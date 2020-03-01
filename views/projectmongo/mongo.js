@@ -19,19 +19,14 @@ db.on('error' , (err)=>{
   console.log(err);
 })
 
-let obj = {}
-
 router.get("/mongo" , async(req ,res)=>{
-
-
         async.parallel(
             [
                 function (cb){ collection.webpage_model.find({}).lean().exec(cb)},
                 function (cb){ collection.card_model.find({}).lean().exec(cb)}
             ] 
-        , function(err, result){
-             
-        res.render("mongo" , 
+        , function(err, result){      
+        res.render("projectmongo/views/main" , 
         {
             web:result[0] , 
             card:result[1] , 
@@ -42,39 +37,39 @@ router.get("/mongo" , async(req ,res)=>{
             }
         })            
         });
-
-
-
 })
-router.get("/mongo/insert" , (req ,res)=>{
+router.get("/mongo/add" , (req ,res)=>{
 
-
-     obj = new collection.card_model({
-        bank: "HDFC",
-        cardnumber:"4324234322342",
-        year:"2019",
-        cvv:999
-    })
-    
-    save(obj , res);
-
-     
+     res.render("projectmongo/views/add" , req.body);
    
 })
 
+router.post("/mongo/add/card" , (req ,res)=>{
 
-function save(object , res){
+    let value = req.body;
 
-    object.save()
 
-    .then(msg=>{
-        res.json("saved")
+    let doc = new collection.card_model({
+        bank : value.bank,
+        cardnumber : value.cardnumber,
+        year : value.year,
+        cvv : parseInt(value.cvv)
     })
-    .catch(err=>{
-        console.log(err);
-        res.json(err);
-    })
 
-}
+    
+    doc.save((err  , data )=>{
+        if(err){
+            console.log("Error insering Data");
+            res.status(500);
+        }else{
+            console.log("Data inserted successfully");
+            res.status(200).redirect("../");
+
+        }
+    })
+})
+
+
+
 
 module.exports = router

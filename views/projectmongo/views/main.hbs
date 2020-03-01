@@ -1,20 +1,4 @@
 
-<script>
-
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-       // Typical action to be performed when the document is ready:
-       document.getElementById("demo").innerHTML = xhttp.responseText;
-    }
-};
-xhttp.open("GET", "filename", true);
-xhttp.send();
-
-</script>
-
-
-
 <div class="container-fluid mt-5">
 
     <div class="row border-3 justify-content-center">
@@ -47,6 +31,8 @@ xhttp.send();
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
             Webpages
         </button>
+        <a href="#" style = "float:right; text-decoration:none" >+</a>
+
       </h2>
     </div>
 
@@ -79,8 +65,9 @@ xhttp.send();
     <div class="card-header" id="headingTwo">
       <h2 class="mb-0">
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Cards
+          Cards 
         </button>
+        <a style = "float:right; text-decoration:none" href="/mongo/add">+</a>
       </h2>
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -117,6 +104,8 @@ xhttp.send();
         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Misc
         </button>
+        <a style = "float:right; text-decoration:none" href="#">+</a>
+
       </h2>
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
@@ -146,8 +135,6 @@ xhttp.send();
   </div>
 </div>
 </div>
-
-
 
 {{!--  --}}
 

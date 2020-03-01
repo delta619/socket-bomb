@@ -1,14 +1,16 @@
 const express = require('express');
+const bodyParser = require("body-parser")
 const mongo = require('mongoose');
 const path = require("path");
 
 const exphbs = require("express-handlebars");
 
-const projectmongo = require('./projectmongo/mongo');
+const projectmongo = require('./views/projectmongo/mongo');
 
 
 var app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.engine("hbs" , exphbs(
