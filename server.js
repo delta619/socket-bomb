@@ -1,33 +1,44 @@
-var express = require('express');
+const express = require('express');
+const mongo = require('mongoose');
+const path = require("path");
+
+const exphbs = require("express-handlebars");
+
+const projectmongo = require('./projectmongo/mongo');
+
+
 var app = express();
-app_server = app.listen(process.env.PORT || 3000);
 
-var io = require('socket.io')(app_server);
 
-var clients = {};
 
+app.engine("hbs" , exphbs(
+  {
+    extname:"hbs" , 
+    defaultLayout:'layout' , 
+    layoutsDir:path.join(__dirname,"/views/layouts"),
+  }))
+
+app.set("view engine" , "hbs");
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
-// app.use(express.static('public'));
 
 
-app.get('/', function(req, res){
-    res.json("Connected to Server");
-  });
-
-  app.get('/check', function(req, res){
-
-    
-  });
 
 
-  io.on('connection' , (socket)=>{
-      socket.emit('status' , 'OK');
-      socket.on("isReady" , (name)=>{
-        clients["name"] = 0;
-      })
-  });
+app.get('/' , (req , res)=>{
+  res.render("index")
+})
+
+
+app.use(projectmongo);
+
+
+  app.listen(process.env.PORT || 3000 , ()=>{
+
+    console.log("Server started");
+  
+  })

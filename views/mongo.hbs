@@ -1,0 +1,154 @@
+
+<script>
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       // Typical action to be performed when the document is ready:
+       document.getElementById("demo").innerHTML = xhttp.responseText;
+    }
+};
+xhttp.open("GET", "filename", true);
+xhttp.send();
+
+</script>
+
+
+
+<div class="container-fluid mt-5">
+
+    <div class="row border-3 justify-content-center">
+        <div class="col-4 m-2  text-center">
+            <h1>
+                Note Data
+            </h1>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+
+        <div class="col-10">
+            
+        </div>
+    </div>
+</div>
+
+
+{{!--  --}}
+<div class="container">
+
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Webpages
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+      <div class="card-body">
+          <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Website</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each web}}
+                    <tr>
+                        <th scope="row">{{indexInc @index}}</th>
+                        <td>{{website}}</td>
+                        <td>{{username}}</td>
+                        <td>{{password}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Cards
+        </button>
+      </h2>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+      <div class="card-body">
+          <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Bank</th>
+                        <th scope="col">Card Number</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">CVV</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each card}}
+                    <tr>
+                        <th scope="row">{{indexInc @index}}</th>
+                        <td>{{bank}}</td>
+                        <td>{{cardnumber}}</td>
+                        <td>{{year}}</td>
+                        <td>{{cvv}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Misc
+        </button>
+      </h2>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+      <div class="card-body">
+          <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Website</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each values}}
+                    <tr>
+                        <th scope="row">{{indexInc @index}}</th>
+                        <td>{{website}}</td>
+                        <td>{{username}}</td>
+                        <td>{{password}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+{{!--  --}}
+
+</div>
